@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web</title>
+    <style>
+        .is-clicked {
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            border: 1px solid black;
+        }
+        button {
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 10px;
+            border-radius: 35px;
+        }
+        .enter {
+            cursor: pointer;
+        }
+        .position {
+            position: fixed; /* or absolute */
+            top: 50%;
+            left: 35%;
+        }
+        .type-in {
+            padding: 10px 10px;
+            border-radius: 5px;
+        }
+        .title {
+            position: fixed; /* or absolute */
+            top: 40%;
+            left: 35%;
+            font-size: 30px;
+            font-family: "Lucida Console", "Courier New", monospace;
+        }
+        body {
+            background-color: #959DEB;
+        }
+    </style>
+</head>
+<body>
+<div class="position">
+    <input size="50" type="text" placeholder="Type here..." class="type-in" onkeydown="pressEnter(event)">
+    <button onclick="getInformation()" class="enter">Enter</button>
+    <button onclick="clicked()" class="click-class">Click me</button>
+    <p class="you-typed"></p>
+</div>
+<div class="title">
+    <p>Typing app</p>
+</div>
+<script>
+    const unClick = document.querySelector(".is-clicked");
+    function getInformation() {
+        const input = document.querySelector(".type-in");
+        const output = document.querySelector(".you-typed");
+        const inputValue = input.value;
+        if(!inputValue) {
+            output.innerHTML = "You haven't typed anything yet!";
+        }
+        else{output.innerHTML = `You typed: ${ inputValue }`;}
+    }
+    function pressEnter(event) {
+        if(event.key === 'Enter') {
+            getInformation();
+        }
+    }
+    function clicked() {
+        const isClick = document.querySelector(".click-class");
+        if(isClick.innerHTML === 'Click me') {
+            isClick.innerHTML = 'You clicked';
+            isClick.classList.add('is-clicked');
+        }
+        else {
+            isClick.innerHTML = 'Click me';
+            isClick.classList.remove('is-clicked');
+        }
+    }
+</script>
+</body>
+</html>

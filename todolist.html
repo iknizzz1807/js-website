@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To do app</title>
+</head>
+<style>
+    .type-in {
+        padding: 10px 10px;
+        border-radius: 5px;
+        font-size: 20px;
+    }
+    .enter {
+        font-size: 25px;
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 9px 28px;
+        border-radius: 35px;
+    }
+    .enter:hover {
+        background-color: gray;
+    }
+    .position {
+        position: fixed; /* or absolute */
+        top: 10%;
+        left: 28%;
+    }
+    .title {
+        color: white;
+        position: fixed; /* or absolute */
+        top: 0%;
+        left: 28%;
+        font-size: 30px;
+        font-family: "Lucida Console", "Courier New", monospace;
+    }
+    div {
+        font-size: 20px;
+    }
+    input::placeholder {
+        font: 1.3rem/3 sans-serif;
+    }
+    .output {
+        text-align: center;
+        color: white;
+        font: 1.5rem/3 sans-serif;
+    }
+    .back-video {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+    .things {
+        border: 3px solid whitesmoke;
+    }
+</style>
+<body>
+<video autoplay loop muted class="back-video"><source src="images/bg.mp4" type="video/mp4"></video>
+<div class="title">
+     <p><b>To do app</b></p>
+</div>
+<div class="position">
+    <input size="50" type="text" placeholder="Type what you want to do..." class="type-in" onkeydown="pressEnter(event)">
+    <button onclick="getInformation()" class="enter">Add</button>
+    <div class="output">
+    </div>
+</div>
+<script>
+    const input = document.querySelector(".type-in");
+    const output = document.querySelector(".output");
+    const myArr = [];
+    function pressEnter(event) {
+        if(event.key === 'Enter') {
+            getInformation();
+        }
+    }
+    function getInformation() {
+        let todoHTML = '';
+        const inputValue = input.value;
+        if(inputValue) {
+            myArr.push(inputValue);
+        }
+        for(let i = 0; i < myArr.length; i++) {
+            if(i === 6) {
+                break;
+            }
+            let html = `<p class="things">${myArr[i]}</p>`;
+            todoHTML += html;
+        output.innerHTML = todoHTML;
+        }
+    }
+</script>
+</body>
+</html>
